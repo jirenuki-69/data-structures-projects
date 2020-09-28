@@ -26,29 +26,24 @@ namespace Queues
         {
             if (!IsEmpty())
             {
-                T element = data[data.Length - 1];
+                T element = data[Size - 1];
 
                 Array.Clear(data, data.Length -1, 1);//Limpio el ultimo elemento
 
                 T[] arrayTemp = new T[--Size];
 
                 Array.Copy(data, 0, arrayTemp, 0, Size);//Nuevo queue temporal
-                Array.Resize<T>(ref data, Size + 1);//Nuevo tamaño de data
+                Array.Resize<T>(ref data, Size);//Nuevo tamaño de data
                 Array.Copy(arrayTemp, data, Size); //Se hace un queue con el elemento removido
 
-                if (data.Length != 0)
-                {
+                if (data.Length != 0) {
                     Back = data[data.Length - 1];
-                }
-                else
-                {
+                } else {
                     Back = default(T);
                 }
 
                 return element; //Retorno el elemento removido
-            }
-            else
-            {
+            } else {
                 throw new IndexOutOfRangeException("Empty Queue");
             }
         }
@@ -65,15 +60,18 @@ namespace Queues
                 T[] arrayTemp = new T[--Size];
 
                 Array.Copy(data, 1, arrayTemp, 0, Size);//Nuevo queue temporal
-                Array.Resize<T>(ref data, Size + 1);//Nuevo tamaño de data
+
+                if(Size + 1 >= minCapacity) {
+                    Array.Resize<T>(ref data, Size + 1);//Nuevo tamaño de data
+                } else {
+                    Array.Resize<T>(ref data, minCapacity);//Nuevo tamaño de data
+                }
+
                 Array.Copy(arrayTemp, data, Size); //Se hace un queue con el elemento removido
 
-                if (data.Length != 0)
-                {
+                if (data.Length != 0) {
                     Front = data[0];
-                }
-                else
-                {
+                } else {
                     Front = default(T);
                 }
 
@@ -87,51 +85,49 @@ namespace Queues
 
         public void PushBack(T element)
         {
-            if (Size == 0)
-            {
+            if (Size == 0) {
                 Front = element;
             }
 
             Back = element;
 
-            if (Size + 1 >= minCapacity)
-            {
+            if (Size + 1 >= minCapacity) {
                 Array.Resize<T>(ref data, Size + 1); //Agrego un nuevo tamaño al arreglo
             }
+
             data[Size++] = element; //Agregar elemento al final del array
         }
         public void PushBack(params T[] elements)
         {
-            if (Size == 0)
-            {
-                Front = elements[0];
-            }
             Array.ForEach<T>(elements, e => PushBack(e));
         }
 
         public void PushFront(T element)
         {
+            Front = element;
+
             if (Size == 0)
             {
                 Back = element;
             }
 
-            Front = element;
+            T[] arrayTemp = new T[++Size + 1];
+            arrayTemp[0] = element;
+
+            Array.Copy(data, 0, arrayTemp, 1, Size - 1);
+            Array.Copy(arrayTemp, data, Size);
 
             if (Size + 1 >= minCapacity)
             {
                 Array.Resize<T>(ref data, Size + 1); //Agrego un nuevo tamaño al arreglo
             }
-            data[Size++] = element; //Agregar elemento al final del array
-
+            data[0] = element; //Agregar elemento al final del array
         }
         public void PushFront(params T[] elements)
         {
-            if (Size == 0)
-            {
-                Front = elements[0];
-            }
             Array.ForEach<T>(elements, e => PushFront(e));
+            Front = elements.Last<T>();
+            Back = Size == 0 ? Back = elements.First<T>() : data[Size - 1];
         }
         public override string ToString()
         {

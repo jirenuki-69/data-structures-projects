@@ -33,7 +33,7 @@ namespace Queues
                 T[] arrayTemp = new T[--Size];
 
                 Array.Copy(data, 0, arrayTemp, 0, Size);//Nuevo queue temporal
-                Array.Resize<T>(ref data, Size);//Nuevo tamaño de data
+                Array.Resize<T>(ref data, Size + 1);//Nuevo tamaño de data
                 Array.Copy(arrayTemp, data, Size); //Se hace un queue con el elemento removido
 
                 if (data.Length != 0)
@@ -65,7 +65,7 @@ namespace Queues
                 T[] arrayTemp = new T[--Size];
 
                 Array.Copy(data, 1, arrayTemp, 0, Size);//Nuevo queue temporal
-                Array.Resize<T>(ref data, Size);//Nuevo tamaño de data
+                Array.Resize<T>(ref data, Size + 1);//Nuevo tamaño de data
                 Array.Copy(arrayTemp, data, Size); //Se hace un queue con el elemento removido
 
                 if (data.Length != 0)
@@ -111,7 +111,27 @@ namespace Queues
 
         public void PushFront(T element)
         {
-            throw new NotImplementedException();
+            if (Size == 0)
+            {
+                Back = element;
+            }
+
+            Front = element;
+
+            if (Size + 1 >= minCapacity)
+            {
+                Array.Resize<T>(ref data, Size + 1); //Agrego un nuevo tamaño al arreglo
+            }
+            data[Size++] = element; //Agregar elemento al final del array
+
+        }
+        public void PushFront(params T[] elements)
+        {
+            if (Size == 0)
+            {
+                Front = elements[0];
+            }
+            Array.ForEach<T>(elements, e => PushFront(e));
         }
         public override string ToString()
         {

@@ -22,8 +22,21 @@ namespace Queues
 
             myArrayDeque.PushBack(1, 2, 3, 4, 5, 6, 7, 8);
             Console.WriteLine(myArrayDeque);
+            Console.WriteLine(myArrayDeque.Back);
+            Console.WriteLine(myArrayDeque.Front);
             myArrayDeque.PopFront();
             Console.WriteLine(myArrayDeque);
+            Console.WriteLine(myArrayDeque.Back);
+            Console.WriteLine(myArrayDeque.Front);
+            myArrayDeque.PushFront(-4, -3, -2, - 1);
+            Console.WriteLine(myArrayDeque);
+            Console.WriteLine(myArrayDeque.Back);
+            Console.WriteLine(myArrayDeque.Front);
+            Console.WriteLine(myArrayDeque);
+            myArrayDeque.PopBack();
+            Console.WriteLine(myArrayDeque);
+            Console.WriteLine(myArrayDeque.Back);
+            Console.WriteLine(myArrayDeque.Front);
             //myArrayQueue.DeQueue();
             //Console.WriteLine(myArrayQueue);
             //Console.WriteLine(myArrayQueue.Head);

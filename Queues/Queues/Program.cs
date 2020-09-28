@@ -19,6 +19,11 @@ namespace Queues
             myArrayQueue.DeQueue(3);
             Console.WriteLine(myArrayQueue);
 
+            myArrayQueue.EnQueue(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+            myArrayQueue.DeQueue(3);
+            myArrayQueue.DeQueue(3);
+            myArrayQueue.EnQueue(1, 2, 3, 4, 5, 6, 7, 8);
+            Console.WriteLine(myArrayQueue);
             //myArrayQueue.DeQueue();
             //Console.WriteLine(myArrayQueue);
             //Console.WriteLine(myArrayQueue.Head);

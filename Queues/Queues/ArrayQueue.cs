@@ -35,7 +35,7 @@ namespace Queues
                 T[] arrayTemp = new T[--Size];
 
                 Array.Copy(data, 1, arrayTemp, 0, Size);//Nuevo queue temporal
-                Array.Resize<T>(ref data, Size);//Nuevo tamaño de data
+                Array.Resize<T>(ref data, Size + 1);//Nuevo tamaño de data
                 Array.Copy(arrayTemp, data, Size); //Se hace un queue con el elemento removido
 
                 if (data.Length != 0) {

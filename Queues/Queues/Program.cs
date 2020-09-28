@@ -11,6 +11,7 @@ namespace Queues
         static void Main(string[] args)
         {
             ArrayQueue<int> myArrayQueue = new ArrayQueue<int>(6);
+            ArrayDeque<int> myArrayDeque = new ArrayDeque<int>(6);
 
             myArrayQueue.EnQueue(1, 2, 3, 4, 5, 6, 7, 8);
             Console.WriteLine(myArrayQueue);
@@ -19,6 +20,10 @@ namespace Queues
             myArrayQueue.DeQueue(3);
             Console.WriteLine(myArrayQueue);
 
+            myArrayDeque.PushBack(1, 2, 3, 4, 5, 6, 7, 8);
+            Console.WriteLine(myArrayDeque);
+            myArrayDeque.PopFront();
+            Console.WriteLine(myArrayDeque);
             //myArrayQueue.DeQueue();
             //Console.WriteLine(myArrayQueue);
             //Console.WriteLine(myArrayQueue.Head);

@@ -5,3 +5,9 @@ C:\Users\mfuen\Estructuras de datos\data-structures-projects\Queues\Queues\obj\D
 C:\Users\mfuen\Estructuras de datos\data-structures-projects\Queues\Queues\obj\Debug\Queues.csproj.CoreCompileInputs.cache
 C:\Users\mfuen\Estructuras de datos\data-structures-projects\Queues\Queues\obj\Debug\Queues.exe
 C:\Users\mfuen\Estructuras de datos\data-structures-projects\Queues\Queues\obj\Debug\Queues.pdb
+C:\Users\RUSELL\Documents\github\data-structures-projects\Queues\Queues\bin\Debug\Queues.exe.config
+C:\Users\RUSELL\Documents\github\data-structures-projects\Queues\Queues\bin\Debug\Queues.exe
+C:\Users\RUSELL\Documents\github\data-structures-projects\Queues\Queues\bin\Debug\Queues.pdb
+C:\Users\RUSELL\Documents\github\data-structures-projects\Queues\Queues\obj\Debug\Queues.csprojAssemblyReference.cache
+C:\Users\RUSELL\Documents\github\data-structures-projects\Queues\Queues\obj\Debug\Queues.exe
+C:\Users\RUSELL\Documents\github\data-structures-projects\Queues\Queues\obj\Debug\Queues.pdb

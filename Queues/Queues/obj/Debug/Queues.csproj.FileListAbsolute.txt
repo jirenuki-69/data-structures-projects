@@ -1,0 +1,7 @@
+C:\Users\mfuen\Estructuras de datos\data-structures-projects\Queues\Queues\bin\Debug\Queues.exe.config
+C:\Users\mfuen\Estructuras de datos\data-structures-projects\Queues\Queues\bin\Debug\Queues.exe
+C:\Users\mfuen\Estructuras de datos\data-structures-projects\Queues\Queues\bin\Debug\Queues.pdb
+C:\Users\mfuen\Estructuras de datos\data-structures-projects\Queues\Queues\obj\Debug\Queues.csprojAssemblyReference.cache
+C:\Users\mfuen\Estructuras de datos\data-structures-projects\Queues\Queues\obj\Debug\Queues.csproj.CoreCompileInputs.cache
+C:\Users\mfuen\Estructuras de datos\data-structures-projects\Queues\Queues\obj\Debug\Queues.exe
+C:\Users\mfuen\Estructuras de datos\data-structures-projects\Queues\Queues\obj\Debug\Queues.pdb

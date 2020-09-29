@@ -10,28 +10,51 @@ namespace Queues
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("-------QUEUE-------");
+            ArrayQueue<string> queue = new ArrayQueue<string>(2);
 
-            ArrayQueue<int> myArrayQueue = new ArrayQueue<int>(6);
+            queue.EnQueue("Miguel");
+            Console.WriteLine(queue);
 
-            myArrayQueue.EnQueue(1, 2, 3, 4, 5, 6, 7, 8);
-            Console.WriteLine(myArrayQueue);
-            Console.WriteLine($"Head: {myArrayQueue.Head}");
-            Console.WriteLine($"Tail: {myArrayQueue.Tail}");
-            myArrayQueue.EnQueue(9);
-            Console.WriteLine(myArrayQueue);
-            Console.WriteLine($"Head: {myArrayQueue.Head}");
-            Console.WriteLine($"Tail: {myArrayQueue.Tail}");
-            myArrayQueue.DeQueue();
-            Console.WriteLine(myArrayQueue);
-            Console.WriteLine($"Head: {myArrayQueue.Head}");
-            Console.WriteLine($"Tail: {myArrayQueue.Tail}");
-            myArrayQueue.DeQueue(3);
-            Console.WriteLine(myArrayQueue);
-            Console.WriteLine($"Head: {myArrayQueue.Head}");
-            Console.WriteLine($"Tail: {myArrayQueue.Tail}");
+            Console.WriteLine($"Head: {queue.Head}\nTail: {queue.Tail}");
+
+            queue.EnQueue("Roger");
+            Console.WriteLine(queue);
+
+            Console.WriteLine($"Head: {queue.Head}\nTail: {queue.Tail}");
+
+            queue.EnQueue("Sergio");
+            Console.WriteLine(queue);
+
+            Console.WriteLine($"Head: {queue.Head}\nTail: {queue.Tail}");
+
+            queue.DeQueue();
+            Console.WriteLine(queue);
+
+            Console.WriteLine($"Head: {queue.Head}\nTail: {queue.Tail}");
+
+            queue.DeQueue();
+            Console.WriteLine(queue);
+
+            Console.WriteLine($"Head: {queue.Head}\nTail: {queue.Tail}");
+
+            queue.DeQueue();
+            Console.WriteLine(queue);
+
+            queue.EnQueue("Miguel", "Roger", "Tostado");
+            Console.WriteLine(queue);
+
+            Console.WriteLine($"Head: {queue.Head}\nTail: {queue.Tail}");
+
+            queue.EnQueue("Luis", "Sergio");
+            Console.WriteLine(queue);
+
+            Console.WriteLine($"Head: {queue.Head}\nTail: {queue.Tail}");
+
+            Console.WriteLine($"Dequeing elements: {queue.DeQueue(5)}");
+            Console.WriteLine(queue);
 
             Console.ReadKey();
+
         }
     }
 }

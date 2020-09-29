@@ -13,9 +13,17 @@ namespace Deques
         private int minCapacity;
         public int Size { get; private set; }
 
-        public T Front { get; private set; }
+        public T Front { get {
+            if (IsEmpty())
+                throw new IndexOutOfRangeException();
+            return data[0];
+        } }
 
-        public T Back { get; private set; }
+        public T Back { get {
+            if (IsEmpty()) 
+                throw new IndexOutOfRangeException();
+            return data[Size - 1];
+        } }
 
         public ArrayDeque(int capacity)
         {
@@ -38,8 +46,6 @@ namespace Deques
 
             Array.Copy(data, 0, arrayTemp, 0, --Size);
             Array.Copy(arrayTemp, data, Size);
-
-            Back = data[Size - 1];
             return poppedElement;
         }
 
@@ -75,7 +81,6 @@ namespace Deques
 
             Array.Copy(data, 1, arrayTemp, 0, --Size);
             Array.Copy(arrayTemp, data, Size);
-            Front = data[0];
 
             return poppedElement;
         }
@@ -96,14 +101,12 @@ namespace Deques
 
         public void PushBack(T element)
         {
-            if (IsEmpty()) Front = element;
 
             if (Size == data.Length)
             {
                 Array.Resize<T>(ref data, data.Length * 2);
             }
 
-            Back = element;
             data[Size++] = element;
         }
 
@@ -115,11 +118,8 @@ namespace Deques
         public void PushFront(T element)
         {
             if (IsEmpty())
-            {
                 data[Size++] = element;
-                Front = element;
-                Back = element;
-            }
+
             else
             {
                 T[] arrayTemp = new T[Size + 1];
@@ -128,7 +128,6 @@ namespace Deques
                 Array.Copy(arrayTemp, data, ++Size);
 
                 data[0] = element;
-                Front = element;
             }
         }
         public override string ToString()

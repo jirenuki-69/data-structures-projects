@@ -64,6 +64,18 @@ namespace Deques
 
             //Console.WriteLine($"Front: {deque.Front}\nBack: {deque.Back}");
 
+            int n = deque.Size;
+
+            for (int i = 0; i < n; i++)
+            {
+                deque.PopBack();
+                Console.WriteLine(deque);
+
+                if(i == n - 2) {
+                    Console.WriteLine($"Front: {deque.Front}\nBack: {deque.Back}");
+                }
+            }
+
             Console.ReadKey();
         }
     }

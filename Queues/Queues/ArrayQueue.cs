@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,9 +12,17 @@ namespace Queues
         private int minCapacity;
         public int Size { get; private set; }
 
-        public T Head { get; private set; }
+        public T Head { get {
+            if (IsEmpty())
+                throw new IndexOutOfRangeException();
+            return data[0];
+        } }
 
-        public T Tail { get; private set; }
+        public T Tail { get {
+            if (IsEmpty())
+                throw new IndexOutOfRangeException();
+            return data[Size - 1];
+        } }
 
         public ArrayQueue(int capacity) //Constructor del ArrayQueue
         {
@@ -24,66 +31,54 @@ namespace Queues
             Size = 0;
         }
 
+        public bool IsEmpty() => Size == 0;
         public T DeQueue()
         {
-            if (!IsEmpty())
+            if (IsEmpty())
             {
-                T element = data[0];
-
-                Array.Clear(data, 0, 1);//Limpio el primer elemento
-
-                T[] arrayTemp = new T[--Size];
-
-                Array.Copy(data, 1, arrayTemp, 0, Size);//Nuevo queue temporal
-                Array.Resize<T>(ref data, Size);//Nuevo tamaño de data
-                Array.Copy(arrayTemp, data, Size); //Se hace un queue con el elemento removido
-
-                if (data.Length != 0) {
-                    Head = data[0];          
-                } else {
-                    Head = default(T);
-                }
-
-                return element; //Retorno el elemento removido
-            } else {
                 throw new IndexOutOfRangeException("Empty Queue");
             }
-        }
+            T poppedElement = data[0];
+            T[] arrayTemp = new T[Size - 1];
 
-        public void DeQueue(int numberOfTimes)
-        {
-            for(int i = 0; i < numberOfTimes; i++)
+            Array.Copy(data, 1, arrayTemp, 0, --Size);
+
+            if (Size == minCapacity)
             {
-                DeQueue();
+                Array.Resize<T>(ref data, minCapacity);
             }
+
+            Array.Copy(arrayTemp, 0, data, 0, Size);
+
+            return poppedElement;
+        }
+        public string DeQueue(int numberOfTimes)
+        {
+            T[] poppedElements = new T[numberOfTimes];
+
+            for (int i = 0; i < numberOfTimes; i++)
+            {
+                poppedElements[i] = DeQueue();
+            }
+
+            string data = string.Join<T>(", ", poppedElements);
+
+            return data;
         }
 
         public void EnQueue(T element)
         {
-            if (Size == 0)
-            {
-                Head = element;
-            }
-
-            Tail = element;
-
             if (Size + 1 >= minCapacity)
             {
-                Array.Resize<T>(ref data, Size + 1); //Agrego un nuevo tamaño al arreglo
+                Array.Resize<T>(ref data, Size + 3);
             }
-            data[Size++] = element; //Agregar elemento al final del array
+
+            data[Size++] = element;
         }
         public void EnQueue(params T[] elements)
         {
-            if (Size == 0)
-            {
-                Head = elements[0];
-            }
-            Array.ForEach<T>( elements, e => EnQueue(e) );
+            Array.ForEach<T>(elements, e => EnQueue(e));
         }
-
-        public bool IsEmpty() => Size == 0;
-
         public override string ToString()
         {
             string debug = $"[C:{data.Length} S:{Size} Empty:{IsEmpty()}]";

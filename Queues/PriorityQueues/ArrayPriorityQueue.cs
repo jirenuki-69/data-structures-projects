@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PriorityQueues
 {
-    class ArrayPriorityQueue<T> : IPriorityQueue<T>
+    class ArrayPriorityQueue<T>
     {
         private Tuple<T, int>[] data; //(item1, item2)
         private int minCapacity;
@@ -24,6 +24,10 @@ namespace PriorityQueues
                 throw new IndexOutOfRangeException("Empty Queue");
             return data[Size - 1].Item1;
         } }
+
+        public Tuple<T, int>[] Data { get => data; }
+
+        public T PriorityComparer { get; }
 
         public ArrayPriorityQueue(int capacity) //Constructor del ArrayQueue
         {
@@ -59,7 +63,7 @@ namespace PriorityQueues
         {
             if (Size + 1 >= minCapacity)
             {
-                Array.Resize<Tuple<T, int>>(ref data, Size + 3);
+                Array.Resize<Tuple<T, int>>(ref data, Size + 1);
             }
 
             data[Size++] = Tuple.Create(element, priority);
@@ -132,7 +136,7 @@ namespace PriorityQueues
                 remainingInLeft += 1;
             }
 
-            for (int i = index; i < Size; i++) {
+            for (int i = index; i < Size - 1; i++) {
                 remainingInRight += 1;
             }
 

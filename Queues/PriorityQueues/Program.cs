@@ -47,15 +47,23 @@ namespace PriorityQueues
 
             Console.WriteLine($"Head: {priorityQueue.Head}\nTail: { priorityQueue.Tail}");
 
+            Console.Write("Sorted Queue: ");
+
+            Array.Sort<Tuple<string, int>>(priorityQueue.Data, (element, element2) => element.Item2.CompareTo(element2.Item2));
+
+            Console.WriteLine(priorityQueue);
+
+            
+
             int size = priorityQueue.Size;
 
             for (int i = 0; i < size; i++)
             {
-                Console.WriteLine($"Priority Dequeue: {priorityQueue.PriorityDequeue()}");
+                Console.WriteLine($"priority dequeue: {priorityQueue.PriorityDequeue()}");
                 Console.WriteLine(priorityQueue);
             }
 
-            Console.WriteLine($"Head: {priorityQueue.Head}\nTail: { priorityQueue.Tail}");
+            //Console.WriteLine($"Head: {priorityQueue.Head}\nTail: { priorityQueue.Tail}");
 
             Console.ReadKey();
         }

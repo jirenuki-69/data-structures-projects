@@ -11,6 +11,7 @@ namespace PriorityQueues
         int Size { get; }
         T Head { get; }
         T Tail { get; }
+        T PriorityComparer { get; }
         void EnQueue(T element, int priority);
         T DeQueue();
         T PriorityDequeue();

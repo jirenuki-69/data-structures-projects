@@ -7,32 +7,33 @@ using System.Threading.Tasks;
 
 namespace PriorityQueues
 {
-    class ArrayPriorityQueue<T>
+    class ArrayPriorityQueue<T> : IPriorityQueue<T>
     {
-        private Tuple<T, int>[] data; //(item1, item2)
+        private T[] data; //(item1, item2)
         private int minCapacity;
         public int Size { get; private set; }
 
         public T Head { get {
             if (IsEmpty())
                 throw new IndexOutOfRangeException("Empty Queue"); //priorityQueue.Head
-            return data[0].Item1;
+            return data[0];
         } }
 
         public T Tail { get {
             if (IsEmpty())
                 throw new IndexOutOfRangeException("Empty Queue");
-            return data[Size - 1].Item1;
+            return data[Size - 1];
         } }
 
-        public Tuple<T, int>[] Data { get => data; }
+        public T[] Data { get => data; }
 
-        public T PriorityComparer { get; }
+        public Comparison<T> PriorityComparer { get; }
 
-        public ArrayPriorityQueue(int capacity) //Constructor del ArrayQueue
+        public ArrayPriorityQueue(int capacity, Comparison<T> comparer) //Constructor del ArrayQueue
         {
-            data = new Tuple<T, int>[capacity];
+            data = new T[capacity];
             minCapacity = capacity;
+            PriorityComparer = comparer;
             Size = 0;
         }
 
@@ -44,14 +45,14 @@ namespace PriorityQueues
             {
                 throw new IndexOutOfRangeException("Empty Queue");
             }
-            T poppedElement = data[0].Item1;
+            T poppedElement = data[0];
             T[] arrayTemp = new T[Size - 1];
 
             Array.Copy(data, 1, arrayTemp, 0, --Size);
 
             if (Size == minCapacity)
             {
-                Array.Resize<Tuple<T, int>>(ref data, minCapacity);
+                Array.Resize<T>(ref data, minCapacity);
             }
 
             Array.Copy(arrayTemp, 0, data, 0, Size);
@@ -59,14 +60,14 @@ namespace PriorityQueues
             return poppedElement;
         }
 
-        public void EnQueue(T element, int priority)
+        public void EnQueue(T element)
         {
             if (Size + 1 >= minCapacity)
             {
-                Array.Resize<Tuple<T, int>>(ref data, Size + 1);
+                Array.Resize<T>(ref data, Size + 1);
             }
 
-            data[Size++] = Tuple.Create(element, priority);
+            data[Size++] = element;
         }
 
         public T PriorityDequeue()
@@ -76,24 +77,18 @@ namespace PriorityQueues
                 throw new IndexOutOfRangeException("Empty Queue");
             }
 
-            int maxPriority = data[0].Item2;
             int index = 0;
+            T[] aux = new T[Size];
 
-            for (int i = 0; i < Size; i++)
-            {
+            Array.Copy(data, aux, Size); //Copio la cola al array auxiliar
+            Array.Sort<T>(aux, PriorityComparer); //Ordeno según la prioridad dada en el constructor de la clase
 
-                if (data[i].Item2 > maxPriority)
-                {
-                    maxPriority = data[i].Item2;
-                    index = i;
-                }
-            }
+            index = Array.IndexOf<T>(data, aux[0]);//Busco el indice de la primera coincidencia del elemento con mayor prioridad
+            T poppedElement = data[index]; //Tomo el elemento a quitar de la cola de prioridad
 
-            T poppedElement = data[index].Item1;
-
-            int[] remainingInQueue = GetRemainingInQueue(index);
-            Tuple<T, int>[] leftQueue = new Tuple<T, int>[remainingInQueue[0]];
-            Tuple<T, int>[] rightQueue = new Tuple<T, int>[remainingInQueue[1]];
+            int[] remainingInQueue = GetRemainingInQueue(index); //Saco cuantos a la izquierda y derecha hay del elemento a sacar
+            T[] leftQueue = new T[remainingInQueue[0]]; //Cuantos quedan a la izquieda
+            T[] rightQueue = new T[remainingInQueue[1]]; //Cuantos quedan a la derecha
 
             Array.Copy(data, 0, leftQueue, 0, leftQueue.Length); //Copiar los elementos a la izquierda del eliminado
             Array.Copy(data, leftQueue.Length + 1, rightQueue, 0, rightQueue.Length); //Copiar los elementos a la derecha del eliminado
@@ -112,19 +107,12 @@ namespace PriorityQueues
                 throw new IndexOutOfRangeException("Empty Queue");
             }
 
-            int maxPriority = data[0].Item2;
-            int index = 0;
+            T[] aux = new T[Size];
+            Array.Copy(data, aux, Size);//Copio los elementos a mi array auxiliar
+            Array.Sort(aux, PriorityComparer); //Ordeno los elementos de acuerdo a la prioridad dada en el constructor
+            T element = aux[0];
 
-            for (int i = 0; i < Size; i++) {
-
-                if(data[i].Item2 > maxPriority) {
-                    maxPriority = data[i].Item2;
-                    index = i;
-                }
-
-            }
-
-            return data[index].Item1;
+            return element; //Retorno el elemento con mayor prioridad en la cola
         }
 
         private int[] GetRemainingInQueue(int index)
@@ -152,7 +140,7 @@ namespace PriorityQueues
             debug += " { ";
             for (int i = 0; i < Size; ++i)
             {
-                debug += $"{data[i].Item1} ";
+                debug += $"{data[i]} ";
             }
             debug += "}";
 

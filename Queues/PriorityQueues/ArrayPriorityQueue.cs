@@ -33,7 +33,7 @@ namespace PriorityQueues
         {
             data = new T[capacity];
             minCapacity = capacity;
-            PriorityComparer = comparer;
+            PriorityComparer = comparer; //Le paso la prioridad definida por el usuario
             Size = 0;
         }
 

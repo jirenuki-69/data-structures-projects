@@ -221,7 +221,32 @@ namespace Forms
             } 
             else if (numData.Length > 1)
             {
-                MessageBox.Show("No puede ingresar el seno de un número si tiene más de un elemento\nen input");
+                string data = string.Empty;
+
+                for (int i = 0; i < numData.Length; ++i)
+                {
+                    if (i == numData.Length - 1)
+                    {
+                        try
+                        {
+                            num = ConvertToRadians(Convert.ToDouble(numData[i]));
+                            num = Math.Sin(num);
+                            data += num.ToString();
+                        }
+                        catch (Exception error)
+                        {
+                            MessageBox.Show(error.Message);
+                            return;
+                        }
+
+                        break;
+                    }
+
+                    data += $"{numData[i]} ";
+                }
+
+                txtINPUT.Text = data;
+                return;
             } 
             else if (txtINPUT.Text.Trim() != "")
             {
@@ -253,7 +278,32 @@ namespace Forms
             }
             else if (numData.Length > 1)
             {
-                MessageBox.Show("No puede ingresar el coseno de un número si tiene más de un elemento\nen input");
+                string data = string.Empty;
+
+                for (int i = 0; i < numData.Length; ++i)
+                {
+                    if (i == numData.Length - 1)
+                    {
+                        try
+                        {
+                            num = ConvertToRadians(Convert.ToDouble(numData[i]));
+                            num = Math.Cos(num);
+                            data += num.ToString();
+                        }
+                        catch (Exception error)
+                        {
+                            MessageBox.Show(error.Message);
+                            return;
+                        }
+
+                        break;
+                    }
+
+                    data += $"{numData[i]} ";
+                }
+
+                txtINPUT.Text = data;
+                return;
             }
             else if (txtINPUT.Text.Trim() != "")
             {
@@ -285,7 +335,32 @@ namespace Forms
             }
             else if (numData.Length > 1)
             {
-                MessageBox.Show("No puede ingresar el tangente de un número si tiene más de un elemento\nen input");
+                string data = string.Empty;
+
+                for (int i = 0; i < numData.Length; ++i)
+                {
+                    if (i == numData.Length - 1)
+                    {
+                        try
+                        {
+                            num = ConvertToRadians(Convert.ToDouble(numData[i]));
+                            num = Math.Tan(num);
+                            data += num.ToString();
+                        }
+                        catch (Exception error)
+                        {
+                            MessageBox.Show(error.Message);
+                            return;
+                        }
+
+                        break;
+                    }
+
+                    data += $"{numData[i]} ";
+                }
+
+                txtINPUT.Text = data;
+                return;
             }
             else if (txtINPUT.Text.Trim() != "")
             {
@@ -588,7 +663,31 @@ namespace Forms
             } 
             else if (numData.Length > 1)
             {
-                MessageBox.Show("No es posible sacar fracción habiendo múltiples datos en input");
+                string data = string.Empty;
+
+                for (int i = 0; i < numData.Length; ++i)
+                {
+                    if (i == numData.Length - 1)
+                    {
+                        try
+                        {
+                            num = 1 / Convert.ToDouble(numData[i]);
+                            data += num.ToString();
+                        }
+                        catch (Exception error)
+                        {
+                            MessageBox.Show(error.Message);
+                            return;
+                        }
+
+                        break;
+                    }
+
+                    data += $"{numData[i]} ";
+                }
+
+                txtINPUT.Text = data;
+                return;
             }
         }
 
@@ -610,7 +709,31 @@ namespace Forms
             }
             else if (numData.Length > 1)
             {
-                MessageBox.Show("No es posible sacar fracción habiendo múltiples datos en input");
+                string data = string.Empty;
+
+                for (int i = 0; i < numData.Length; ++i)
+                {
+                    if (i == numData.Length - 1)
+                    {
+                        try
+                        {
+                            num = Math.Pow(Convert.ToDouble(numData[i]), 2);
+                            data += num.ToString();
+                        }
+                        catch (Exception error)
+                        {
+                            MessageBox.Show(error.Message);
+                            return;
+                        }
+
+                        break;
+                    }
+
+                    data += $"{numData[i]} ";
+                }
+
+                txtINPUT.Text = data;
+                return;
             }
         }
 
@@ -641,7 +764,37 @@ namespace Forms
             }
             else if (numData.Length > 1)
             {
-                MessageBox.Show("No es posible sacar fracción habiendo múltiples datos en input");
+                string data = string.Empty;
+
+                for (int i = 0; i < numData.Length; ++i)
+                {
+                    if (i == numData.Length - 1)
+                    {
+                        try
+                        {
+                            if (Convert.ToDouble(numData[i]) < 0)
+                            {
+                                MessageBox.Show("Raíz a número negativo");
+                                return;
+                            }
+
+                            num = Math.Sqrt(Convert.ToDouble(numData[i]));
+                            data += num.ToString();
+                        }
+                        catch (Exception error)
+                        {
+                            MessageBox.Show(error.Message);
+                            return;
+                        }
+
+                        break;
+                    }
+
+                    data += $"{numData[i]} ";
+                }
+
+                txtINPUT.Text = data;
+                return;
             }
         }
 

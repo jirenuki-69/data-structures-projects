@@ -170,8 +170,9 @@ namespace Forms
         {
             if (txtINPUT.Text.Trim() == "" && stack.Size > 0)
             {
+                int n = stack.Size;
                 //Procedo a borrar la pila
-                for(int i = 0; i < stack.Size + 1; i++)
+                for (int i = 0; i < n; i++)
                 {
                     stack.Pop();
                 }

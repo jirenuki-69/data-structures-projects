@@ -97,24 +97,16 @@ namespace Forms
 
         private void btnBACK_Click(object sender, EventArgs e)
         {
-            if (txtINPUT.Text.Length == 1)
-            {
-                txtINPUT.Text = txtINPUT.Text.Remove(txtINPUT.Text.Length - 1);
-                isDotPressed = false;
-                isMinusPressed = false;
-            }
-            else if (txtINPUT.Text != "") //Comprobar que en el input haya algo escrito
+            if (txtINPUT.Text != "") //Comprobar que en el input haya algo escrito
             {
                 //Elimino el último caracter de la cadena
                 txtINPUT.Text = txtINPUT.Text.Remove( txtINPUT.Text.Length - 1 );
-                isDotPressed = true;
-                isMinusPressed = true;
             }
         }
 
         private void btnENTER_Click(object sender, EventArgs e)
         {
-            string[] numData = txtINPUT.Text.Split();
+            string[] numData = txtINPUT.Text.Split(); //Aquí almaceno todos los datos del input
 
             if (numData.Length > 1) //Puso múltiples números
             {
@@ -132,7 +124,8 @@ namespace Forms
                         MessageBox.Show("Caracter no válido para el stack", "Error");
                     }
                 }
-            } else if (txtINPUT.Text.Trim() != "") //Verifico si hay numeros en la pantalla y no solo espacios en blanco
+            } 
+            else if (txtINPUT.Text.Trim() != "") //Verifico si hay numeros en la pantalla y no solo espacios en blanco
             {
                 try
                 {
@@ -222,7 +215,9 @@ namespace Forms
 
             if (txtINPUT.Text.Trim() == "" && stack.Size > 0)
             {
-                stack.Push( Math.Sin( stack.Pop() ) ); //Retorno el seno del ultimo del stack
+                num = stack.Pop();
+                num = ConvertToRadians(num);
+                stack.Push( Math.Sin(num) ); //Retorno el seno del ultimo del stack
             } 
             else if (numData.Length > 1)
             {
@@ -252,7 +247,9 @@ namespace Forms
 
             if (txtINPUT.Text.Trim() == "" && stack.Size > 0)
             {
-                stack.Push(Math.Cos(stack.Pop())); //Retorno el seno del ultimo del stack
+                num = stack.Pop();
+                num = ConvertToRadians(num);
+                stack.Push(Math.Cos(num)); //Retorno el coseno del ultimo del stack
             }
             else if (numData.Length > 1)
             {
@@ -264,7 +261,7 @@ namespace Forms
                 {
                     num = Convert.ToDouble(txtINPUT.Text);
                     num = ConvertToRadians(num);
-                    stack.Push(Math.Cos(num)); //Meto a la pila el seno del utimo ingresado
+                    stack.Push(Math.Cos(num)); //Meto a la pila el coseno del utimo ingresado
                 }
                 catch (Exception error)
                 {
@@ -282,7 +279,9 @@ namespace Forms
 
             if (txtINPUT.Text.Trim() == "" && stack.Size > 0)
             {
-                stack.Push(Math.Tan(stack.Pop())); //Retorno el seno del ultimo del stack
+                num = stack.Pop();
+                num = ConvertToRadians(num);
+                stack.Push(Math.Tan(num)); //Retorno la tangente del ultimo del stack
             }
             else if (numData.Length > 1)
             {
@@ -294,7 +293,7 @@ namespace Forms
                 {
                     num = Convert.ToDouble(txtINPUT.Text);
                     num = ConvertToRadians(num);
-                    stack.Push(Math.Tan(num)); //Meto a la pila el seno del utimo ingresado
+                    stack.Push(Math.Tan(num)); //Meto a la pila la tangente del utimo ingresado
                 }
                 catch (Exception error)
                 {
@@ -597,13 +596,7 @@ namespace Forms
         {
             string[] numData = txtINPUT.Text.Split();
 
-            if ((numData.Length == 1 && numData[0] != "") && numData[0] == "0")
-            {
-                MessageBox.Show("No se puede hacer división sobre 0");
-                txtINPUT.Text = "";
-                return;
-            }
-            else if (numData.Length == 1 && numData[0] != "")
+            if (numData.Length == 1 && numData[0] != "")
             {
                 try
                 {
@@ -625,22 +618,25 @@ namespace Forms
         {
             string[] numData = txtINPUT.Text.Split();
 
-            if ((numData.Length == 1 && numData[0] != "") && numData[0] == "0")
-            {
-                MessageBox.Show("No se puede hacer división sobre 0");
-                txtINPUT.Text = "";
-                return;
-            }
-            else if (numData.Length == 1 && numData[0] != "")
+            if (numData.Length == 1 && numData[0] != "")
             {
                 try
                 {
-                    num = Math.Sqrt(Convert.ToDouble(txtINPUT.Text));
+                    num = Convert.ToDouble(txtINPUT.Text);
+
+                    if (num < 0)
+                    {
+                        MessageBox.Show("No se puede sacar la raíz de un número negativo");
+                        return;
+                    }
+
+                    num = Math.Sqrt(num);
+
                     txtINPUT.Text = num.ToString();
                 }
                 catch (Exception error)
                 {
-                    MessageBox.Show("Caracter no válido para sacarle fracción", "Error");
+                    MessageBox.Show("Caracter no válido para sacarle raíz", "Error");
                 }
             }
             else if (numData.Length > 1)

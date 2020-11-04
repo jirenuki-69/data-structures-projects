@@ -101,6 +101,8 @@ namespace Forms
             {
                 //Elimino el último caracter de la cadena
                 txtINPUT.Text = txtINPUT.Text.Remove( txtINPUT.Text.Length - 1 );
+                isDotPressed = false;
+                isMinusPressed = false;
             }
         }
 
@@ -408,7 +410,50 @@ namespace Forms
             } 
             else if (numData.Length > 1)
             {
-                MessageBox.Show("No puede hacer la operación con múltiples datos ingresados");
+                if (numData.Length == 2)
+                {
+                    try
+                    {
+                        num2 = Convert.ToDouble(numData[1]);
+                        num1 = Convert.ToDouble(numData[0]);
+
+                        stack.Push(num1 + num2);
+
+                        PrintArrayStack();
+                        txtINPUT.Text = string.Empty;
+                        return;
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show(er.Message);
+                        PrintArrayStack();
+                        return;
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        for (int i = 0; i < numData.Length - 2; ++i)
+                        {
+                            stack.Push(Convert.ToDouble(numData[i]));
+                        }
+
+                        num2 = Convert.ToDouble(numData[numData.Length - 1]);
+                        num1 = Convert.ToDouble(numData[numData.Length - 2]);
+
+                        stack.Push(num1 + num2);
+                        PrintArrayStack();
+                        txtINPUT.Text = string.Empty;
+                        return;
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show(er.Message);
+                        PrintArrayStack();
+                        return;
+                    }
+                }
             }
             else
             {
@@ -446,7 +491,50 @@ namespace Forms
             }
             else if (numData.Length > 1)
             {
-                MessageBox.Show("No puede hacer la operación con múltiples datos ingresados");
+                if (numData.Length == 2)
+                {
+                    try
+                    {
+                        num2 = Convert.ToDouble(numData[1]);
+                        num1 = Convert.ToDouble(numData[0]);
+
+                        stack.Push(num1 - num2);
+
+                        PrintArrayStack();
+                        txtINPUT.Text = string.Empty;
+                        return;
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show(er.Message);
+                        PrintArrayStack();
+                        return;
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        for (int i = 0; i < numData.Length - 2; ++i)
+                        {
+                            stack.Push(Convert.ToDouble(numData[i]));
+                        }
+
+                        num2 = Convert.ToDouble(numData[numData.Length - 1]);
+                        num1 = Convert.ToDouble(numData[numData.Length - 2]);
+
+                        stack.Push(num1 - num2);
+                        PrintArrayStack();
+                        txtINPUT.Text = string.Empty;
+                        return;
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show(er.Message);
+                        PrintArrayStack();
+                        return;
+                    }
+                }
             }
             else
             {
@@ -484,7 +572,50 @@ namespace Forms
             }
             else if (numData.Length > 1)
             {
-                MessageBox.Show("No puede hacer la operación con múltiples datos ingresados");
+                if (numData.Length == 2)
+                {
+                    try
+                    {
+                        num2 = Convert.ToDouble(numData[1]);
+                        num1 = Convert.ToDouble(numData[0]);
+
+                        stack.Push(num1 * num2);
+
+                        PrintArrayStack();
+                        txtINPUT.Text = string.Empty;
+                        return;
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show(er.Message);
+                        PrintArrayStack();
+                        return;
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        for (int i = 0; i < numData.Length - 2; ++i)
+                        {
+                            stack.Push(Convert.ToDouble(numData[i]));
+                        }
+
+                        num2 = Convert.ToDouble(numData[numData.Length - 1]);
+                        num1 = Convert.ToDouble(numData[numData.Length - 2]);
+
+                        stack.Push(num1 * num2);
+                        PrintArrayStack();
+                        txtINPUT.Text = string.Empty;
+                        return;
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show(er.Message);
+                        PrintArrayStack();
+                        return;
+                    }
+                }
             }
             else
             {
@@ -538,7 +669,64 @@ namespace Forms
             }
             else if (numData.Length > 1)
             {
-                MessageBox.Show("No puede hacer la operación con múltiples datos ingresados");
+                if (numData.Length == 2)
+                {
+                    try
+                    {
+                        num2 = Convert.ToDouble(numData[1]);
+
+                        if (num2 == 0)
+                        {
+                            MessageBox.Show("No se puede hacer una división sobre 0");
+                            return;
+                        }
+
+                        num1 = Convert.ToDouble(numData[0]);
+
+                        stack.Push(num1 / num2);
+
+                        PrintArrayStack();
+                        txtINPUT.Text = string.Empty;
+                        return;
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show(er.Message);
+                        PrintArrayStack();
+                        return;
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        for (int i = 0; i < numData.Length - 2; ++i)
+                        {
+                            stack.Push(Convert.ToDouble(numData[i]));
+                        }
+
+                        num2 = Convert.ToDouble(numData[numData.Length - 1]);
+
+                        if (num2 == 0)
+                        {
+                            MessageBox.Show("No se puede hacer una división sobre 0");
+                            return;
+                        }
+
+                        num1 = Convert.ToDouble(numData[numData.Length - 2]);
+
+                        stack.Push(num1 / num2);
+                        PrintArrayStack();
+                        txtINPUT.Text = string.Empty;
+                        return;
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show(er.Message);
+                        PrintArrayStack();
+                        return;
+                    }
+                }
             }
             else
             {
@@ -576,7 +764,50 @@ namespace Forms
             }
             else if (numData.Length > 1)
             {
-                MessageBox.Show("No puede hacer la operación con múltiples datos ingresados");
+                if (numData.Length == 2)
+                {
+                    try
+                    {
+                        num2 = Convert.ToDouble(numData[1]);
+                        num1 = Convert.ToDouble(numData[0]);
+
+                        stack.Push(Math.Pow(num1, num2));
+
+                        PrintArrayStack();
+                        txtINPUT.Text = string.Empty;
+                        return;
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show(er.Message);
+                        PrintArrayStack();
+                        return;
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        for (int i = 0; i < numData.Length - 2; ++i)
+                        {
+                            stack.Push(Convert.ToDouble(numData[i]));
+                        }
+
+                        num2 = Convert.ToDouble(numData[numData.Length - 1]);
+                        num1 = Convert.ToDouble(numData[numData.Length - 2]);
+
+                        stack.Push(Math.Pow(num1, num2));
+                        PrintArrayStack();
+                        txtINPUT.Text = string.Empty;
+                        return;
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show(er.Message);
+                        PrintArrayStack();
+                        return;
+                    }
+                }
             }
             else
             {
@@ -590,15 +821,6 @@ namespace Forms
         private void btnSQRT_Click(object sender, EventArgs e)
         {
             string[] numData = txtINPUT.Text.Split();
-
-            if (stack.Size > 1)
-            {
-                if (stack[stack.Size - 2] < 0)
-                {
-                    MessageBox.Show("Número negativo en raíz cuadrada");
-                    return;
-                }
-            }
 
             if ((numData.Length == 1 && numData[0] != "") && stack.Size >= 1) //Puso un numero nada más en input
             {
@@ -629,7 +851,62 @@ namespace Forms
             }
             else if (numData.Length > 1)
             {
-                MessageBox.Show("No puede hacer la operación con múltiples datos ingresados");
+                if (numData.Length == 2)
+                {
+                    try
+                    {
+                        num2 = Convert.ToDouble(numData[1]);
+                        num1 = Convert.ToDouble(numData[0]);
+
+                        if (num1 < 0)
+                        {
+                            MessageBox.Show("No se le puede sacar raíz a un negativo");
+                            return;
+                        }
+
+                        stack.Push(Math.Pow(num1, 1 / num2));
+
+                        PrintArrayStack();
+                        txtINPUT.Text = string.Empty;
+                        return;
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show(er.Message);
+                        PrintArrayStack();
+                        return;
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        for (int i = 0; i < numData.Length - 2; ++i)
+                        {
+                            stack.Push(Convert.ToDouble(numData[i]));
+                        }
+
+                        num2 = Convert.ToDouble(numData[numData.Length - 1]);
+                        num1 = Convert.ToDouble(numData[numData.Length - 2]);
+
+                        if (num1 < 0)
+                        {
+                            MessageBox.Show("No se le puede sacar raíz a un negativo");
+                            return;
+                        }
+
+                        stack.Push(Math.Pow(num1, 1 / num2));
+                        PrintArrayStack();
+                        txtINPUT.Text = string.Empty;
+                        return;
+                    }
+                    catch (Exception er)
+                    {
+                        MessageBox.Show(er.Message);
+                        PrintArrayStack();
+                        return;
+                    }
+                }
             }
             else
             {

@@ -84,7 +84,8 @@ namespace SuperForms
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            settings ajustes = new settings();
+            ajustes.Show();
         }
 
         private void AddNewClients()

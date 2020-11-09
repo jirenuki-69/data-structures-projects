@@ -8,18 +8,18 @@ namespace Super
 {
     public class Caja
     {
-        int maximoProductos, checkout;
+        int maximoProductos, CHECKOUT_NUM_OF_PRODUCTS;
         ArrayQueue<Cliente> clientes = new ArrayQueue<Cliente>(0);
 
         public int MaximoProductos { get => maximoProductos; set => maximoProductos = value; }
-        public int Checkout { get => checkout; set => checkout = value; }
+        public int _CHECKOUT_NUM_OF_PRODUCTS { get => CHECKOUT_NUM_OF_PRODUCTS; set => CHECKOUT_NUM_OF_PRODUCTS = value; }
         public ArrayQueue<Cliente> Clientes { get => clientes; set => clientes = value; }
 
-        public Caja(int num) => checkout = num;
+        public Caja(int num) => CHECKOUT_NUM_OF_PRODUCTS = num;
 
         public Caja(int num, int productos)
         {
-            checkout = num;
+            CHECKOUT_NUM_OF_PRODUCTS = num;
             maximoProductos = productos;
         }
     }

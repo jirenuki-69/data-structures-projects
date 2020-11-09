@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.txtCAJARAPIDA = new System.Windows.Forms.RichTextBox();
             this.txtCAJA4 = new System.Windows.Forms.RichTextBox();
             this.txtCAJA1 = new System.Windows.Forms.RichTextBox();
@@ -46,7 +45,6 @@
             this.btnIterar = new System.Windows.Forms.Button();
             this.txtSUPER = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.timer = new System.Windows.Forms.Timer(this.components);
             this.labelITERACION = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imgSETTINGS)).BeginInit();
             this.SuspendLayout();
@@ -259,10 +257,6 @@
             this.label6.TabIndex = 18;
             this.label6.Text = "SÚPER";
             // 
-            // timer
-            // 
-            this.timer.Interval = 1000;
-            // 
             // labelITERACION
             // 
             this.labelITERACION.AutoSize = true;
@@ -300,6 +294,7 @@
             this.Controls.Add(this.txtCAJARAPIDA);
             this.Name = "Form1";
             this.Text = "Supermercado Puki";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.imgSETTINGS)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -325,7 +320,6 @@
         private System.Windows.Forms.Button btnIterar;
         private System.Windows.Forms.RichTextBox txtSUPER;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Label labelITERACION;
     }
 }

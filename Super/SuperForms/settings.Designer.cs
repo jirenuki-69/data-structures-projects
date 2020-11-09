@@ -233,7 +233,7 @@
             this.upDownSIMULATION_STEP_TIME.ForeColor = System.Drawing.Color.White;
             this.upDownSIMULATION_STEP_TIME.Location = new System.Drawing.Point(545, 368);
             this.upDownSIMULATION_STEP_TIME.Maximum = new decimal(new int[] {
-            2000,
+            5000,
             0,
             0,
             0});

@@ -90,6 +90,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ArrayList\ArrayList.csproj">
+      <Project>{310b016a-874c-430d-a36e-a1e25151d38e}</Project>
+      <Name>ArrayList</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Super\Super.csproj">
       <Project>{73026ec5-b3ec-4841-840f-21b5429f9295}</Project>
       <Name>Super</Name>

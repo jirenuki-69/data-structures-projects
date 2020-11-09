@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Super", "Super\Super.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperForms", "SuperForms\SuperForms.csproj", "{A54D5AF5-6B69-49DF-906F-2051F39E31EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayList", "ArrayList\ArrayList.csproj", "{310B016A-874C-430D-A36E-A1E25151D38E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A54D5AF5-6B69-49DF-906F-2051F39E31EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A54D5AF5-6B69-49DF-906F-2051F39E31EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A54D5AF5-6B69-49DF-906F-2051F39E31EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{310B016A-874C-430D-A36E-A1E25151D38E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{310B016A-874C-430D-A36E-A1E25151D38E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{310B016A-874C-430D-A36E-A1E25151D38E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{310B016A-874C-430D-A36E-A1E25151D38E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

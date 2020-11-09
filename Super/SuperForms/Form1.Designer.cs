@@ -46,6 +46,8 @@
             this.txtSUPER = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.labelITERACION = new System.Windows.Forms.Label();
+            this.txtCLIENTESSALIENDO = new System.Windows.Forms.RichTextBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imgSETTINGS)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +55,7 @@
             // 
             this.txtCAJARAPIDA.BackColor = System.Drawing.Color.Firebrick;
             this.txtCAJARAPIDA.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCAJARAPIDA.Font = new System.Drawing.Font("Roboto Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCAJARAPIDA.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCAJARAPIDA.ForeColor = System.Drawing.Color.White;
             this.txtCAJARAPIDA.Location = new System.Drawing.Point(48, 527);
             this.txtCAJARAPIDA.Name = "txtCAJARAPIDA";
@@ -66,7 +68,7 @@
             // 
             this.txtCAJA4.BackColor = System.Drawing.Color.Firebrick;
             this.txtCAJA4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCAJA4.Font = new System.Drawing.Font("Roboto Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCAJA4.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCAJA4.ForeColor = System.Drawing.Color.White;
             this.txtCAJA4.Location = new System.Drawing.Point(400, 309);
             this.txtCAJA4.Name = "txtCAJA4";
@@ -79,7 +81,7 @@
             // 
             this.txtCAJA1.BackColor = System.Drawing.Color.Firebrick;
             this.txtCAJA1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCAJA1.Font = new System.Drawing.Font("Roboto Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCAJA1.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCAJA1.ForeColor = System.Drawing.Color.White;
             this.txtCAJA1.Location = new System.Drawing.Point(48, 80);
             this.txtCAJA1.Name = "txtCAJA1";
@@ -92,7 +94,7 @@
             // 
             this.txtCAJA2.BackColor = System.Drawing.Color.Firebrick;
             this.txtCAJA2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCAJA2.Font = new System.Drawing.Font("Roboto Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCAJA2.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCAJA2.ForeColor = System.Drawing.Color.White;
             this.txtCAJA2.Location = new System.Drawing.Point(400, 80);
             this.txtCAJA2.Name = "txtCAJA2";
@@ -105,7 +107,7 @@
             // 
             this.txtCAJA3.BackColor = System.Drawing.Color.Firebrick;
             this.txtCAJA3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCAJA3.Font = new System.Drawing.Font("Roboto Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCAJA3.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCAJA3.ForeColor = System.Drawing.Color.White;
             this.txtCAJA3.Location = new System.Drawing.Point(48, 309);
             this.txtCAJA3.Name = "txtCAJA3";
@@ -237,9 +239,9 @@
             // 
             this.txtSUPER.BackColor = System.Drawing.Color.Firebrick;
             this.txtSUPER.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSUPER.Font = new System.Drawing.Font("Roboto Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSUPER.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSUPER.ForeColor = System.Drawing.Color.White;
-            this.txtSUPER.Location = new System.Drawing.Point(780, 249);
+            this.txtSUPER.Location = new System.Drawing.Point(779, 80);
             this.txtSUPER.Name = "txtSUPER";
             this.txtSUPER.ReadOnly = true;
             this.txtSUPER.Size = new System.Drawing.Size(422, 287);
@@ -251,7 +253,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Road Rage", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(944, 184);
+            this.label6.Location = new System.Drawing.Point(942, 24);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(96, 37);
             this.label6.TabIndex = 18;
@@ -262,11 +264,35 @@
             this.labelITERACION.AutoSize = true;
             this.labelITERACION.Font = new System.Drawing.Font("Shrikhand", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelITERACION.ForeColor = System.Drawing.Color.White;
-            this.labelITERACION.Location = new System.Drawing.Point(894, 612);
+            this.labelITERACION.Location = new System.Drawing.Point(890, 383);
             this.labelITERACION.Name = "labelITERACION";
             this.labelITERACION.Size = new System.Drawing.Size(197, 35);
             this.labelITERACION.TabIndex = 19;
             this.labelITERACION.Text = "ITERACIÓN: 0";
+            // 
+            // txtCLIENTESSALIENDO
+            // 
+            this.txtCLIENTESSALIENDO.BackColor = System.Drawing.Color.Firebrick;
+            this.txtCLIENTESSALIENDO.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCLIENTESSALIENDO.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCLIENTESSALIENDO.ForeColor = System.Drawing.Color.White;
+            this.txtCLIENTESSALIENDO.Location = new System.Drawing.Point(774, 527);
+            this.txtCLIENTESSALIENDO.Name = "txtCLIENTESSALIENDO";
+            this.txtCLIENTESSALIENDO.ReadOnly = true;
+            this.txtCLIENTESSALIENDO.Size = new System.Drawing.Size(427, 207);
+            this.txtCLIENTESSALIENDO.TabIndex = 20;
+            this.txtCLIENTESSALIENDO.Text = "";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Road Rage", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(860, 478);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(261, 37);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "CLIENTES SALIENDO";
             // 
             // Form1
             // 
@@ -274,6 +300,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
             this.ClientSize = new System.Drawing.Size(1509, 774);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtCLIENTESSALIENDO);
             this.Controls.Add(this.labelITERACION);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtSUPER);
@@ -321,6 +349,8 @@
         private System.Windows.Forms.RichTextBox txtSUPER;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label labelITERACION;
+        private System.Windows.Forms.RichTextBox txtCLIENTESSALIENDO;
+        private System.Windows.Forms.Label label7;
     }
 }
 

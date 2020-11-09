@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Timers;
 using Super;
+using ArrayList;
 using System.Runtime.Remoting.Messaging;
 
 namespace SuperForms
@@ -25,11 +26,12 @@ namespace SuperForms
         bool clientExistsInCaja = false;
         bool timerInitialized = false;
 
-        List<Cliente> clientes = new List<Cliente>();
         Caja[] cajas = new Caja[5];
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>(4);
+        ArrayList<Cliente> clientesSaliendo = new ArrayList<Cliente>(4);
         ArrayQueue<Cliente> clientesEnEspera = new ArrayQueue<Cliente>(0);
 
-        System.Timers.Timer timer = new System.Timers.Timer(100);
+        System.Timers.Timer timer = new System.Timers.Timer(1000);
 
         public System.Timers.Timer Timer { get => timer; set => timer = value; }
         public Caja[] Cajas { get => cajas; set => cajas = value; }
@@ -38,13 +40,15 @@ namespace SuperForms
         {
             InitializeComponent();
 
+            CenterTextBoxes();
+
             Control.CheckForIllegalCrossThreadCalls = false;
 
             for (int i = 0; i < cajas.Length; ++i)
             {
                 if (i == cajas.Length - 1)
                 {
-                    cajas[i] = new Caja(2, EXPRESS_LANE_MAX_PRODUCTS); 
+                    cajas[i] = new Caja(2, EXPRESS_LANE_MAX_PRODUCTS);
                     continue;
                 }
 
@@ -117,14 +121,14 @@ namespace SuperForms
             iteracion += 1;
             labelITERACION.Text = $"ITERACIÓN: {iteracion}";
 
-            for (int i = 0; i < clientes.Count; ++i)
+            for (int i = 0; i < clientes.Size; ++i)
             {
                 clientes[i].ActualDelay += 1;
 
                 if (clientes[i].ActualDelay > clientes[i].Delay)
                 {
                     clientesEnEspera.EnQueue(clientes[i]);
-                    clientes.RemoveAt(i);
+                    clientes.Remove(i);
                 }
             }
         }
@@ -155,13 +159,14 @@ namespace SuperForms
 
             RefreshClientTextBoxes();
             RefreshCajas();
+            CenterTextBoxes();
         }
 
         private void RefreshClientTextBoxes()
         {
             string data = string.Empty;
 
-            for (int i = 0; i < clientes.Count; ++i)
+            for (int i = 0; i < clientes.Size; ++i)
             {
                 data += clientes[i].ToString();
             }
@@ -193,7 +198,7 @@ namespace SuperForms
                 if (clientesEnEspera.Head.NumeroArticulos <= EXPRESS_LANE_MAX_PRODUCTS) //Si ese cliente en espera cumple con el criterio de productos de la caja rápida
                 {
                     cajas[4].Clientes.EnQueue(clientesEnEspera.DeQueue());
-                } 
+                }
                 else //Si el cliente no cumple con el criterio...
                 {
                     int index = EscogerCaja(); //El cliente se irá a la primera caja que vea con menor número de clientes esperando en dicha caja
@@ -310,9 +315,13 @@ namespace SuperForms
 
                 if (cajas[i].Clientes.Head.NumeroArticulos <= 0)
                 {
-                    cajas[i].Clientes.DeQueue();
+                    cajas[i].Clientes.Head.NumeroArticulos = 0;
+                    cajas[i].Clientes.Head.Salida = iteracion;
+                    clientesSaliendo.Add(cajas[i].Clientes.DeQueue());
                 }
             }
+
+            RefreshSalida();
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -343,6 +352,7 @@ namespace SuperForms
                 }
             }
 
+            btnDetener.Enabled = false;
             DEFAULT_VALUES = new int[] { 10, 8, 3, 4 };
             MAX_NUM_CLIENTS = DEFAULT_VALUES[0];
             MAX_NUM_PRODUCTS = DEFAULT_VALUES[1];
@@ -352,9 +362,11 @@ namespace SuperForms
             labelITERACION.Text = $"ITERACIÓN = {iteracion}";
             numClientes = 1;
             clientExistsInCaja = false;
-            clientes = new List<Cliente>();
-            cajas = new Caja[5];
+            timerInitialized = false;
+            clientes = new ArrayList<Cliente>(4);
+            clientesSaliendo = new ArrayList<Cliente>(4);
             clientesEnEspera = new ArrayQueue<Cliente>(0);
+            cajas = new Caja[5];
 
             timer.Dispose();
             timer = new System.Timers.Timer(1000);
@@ -369,6 +381,57 @@ namespace SuperForms
 
                 cajas[i] = new Caja(1);
             }
+        }
+        private void RefreshSalida()
+        {
+            txtCLIENTESSALIENDO.Text = "";
+
+            for (int i = 0; i < clientesSaliendo.Size; ++i)
+            {
+                try
+                {
+                    txtCLIENTESSALIENDO.Text += clientesSaliendo[i].ToStringExit();
+                } 
+                catch(Exception e)
+                {
+                    MessageBox.Show("Ocurrió algo con el programa, favor de reiniciar");
+                }
+            }
+        }
+
+        private void CenterTextBoxes()
+        {
+            txtSUPER.SelectAll();
+            txtSUPER.SelectionAlignment = HorizontalAlignment.Center;
+            txtSUPER.DeselectAll();
+
+            txtCAJA1.SelectAll();
+            txtCAJA1.SelectionAlignment = HorizontalAlignment.Center;
+            txtCAJA1.DeselectAll();
+
+            txtCAJA1.SelectAll();
+            txtCAJA1.SelectionAlignment = HorizontalAlignment.Center;
+            txtCAJA1.DeselectAll();
+
+            txtCAJA2.SelectAll();
+            txtCAJA2.SelectionAlignment = HorizontalAlignment.Center;
+            txtCAJA2.DeselectAll();
+
+            txtCAJA3.SelectAll();
+            txtCAJA3.SelectionAlignment = HorizontalAlignment.Center;
+            txtCAJA3.DeselectAll();
+
+            txtCAJA4.SelectAll();
+            txtCAJA4.SelectionAlignment = HorizontalAlignment.Center;
+            txtCAJA4.DeselectAll();
+
+            txtCAJARAPIDA.SelectAll();
+            txtCAJARAPIDA.SelectionAlignment = HorizontalAlignment.Center;
+            txtCAJARAPIDA.DeselectAll();
+
+            txtCLIENTESSALIENDO.SelectAll();
+            txtCLIENTESSALIENDO.SelectionAlignment = HorizontalAlignment.Center;
+            txtCLIENTESSALIENDO.DeselectAll();
         }
     }
 }

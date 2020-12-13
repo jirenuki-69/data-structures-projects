@@ -17,5 +17,6 @@ namespace TreeProject
         Node<T> AddRightChild(Node<T> node, T data);
         void DeleteNode(Node<T> node, bool withChildren);
         void ForEach(Action<T> action, int order);
+        List<T> TreeSort(Comparison<T> comparison);
     }
 }

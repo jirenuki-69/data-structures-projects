@@ -48,6 +48,7 @@ namespace TreeProject
             else if (node.LeftNode != null)
                 throw new Exception("Este nodo ya tiene un hijo izquierdo");
 
+            //Nodo es root y el root no tiene hijo izquierdo
             if (node.ParentNode == null && RootNode.LeftNode == null)
             {
                 Node<T> nuevoNodo = new Node<T>(data, 1);
@@ -155,16 +156,28 @@ namespace TreeProject
                 throw new Exception("?");
         }
 
-        private int MaxHeight(Node<T> node)
+        public List<T> TreeSort(Comparison<T> comparison)
         {
-            if (node == null)
+            List<T> list = new List<T>();
+
+            foreach (T e in this)
+                list.Add(e);
+
+            list.Sort(comparison);
+
+            return list;
+        }
+
+        private int MaxHeight(Node<T> currentNode)
+        {
+            if (currentNode == null)
                 return 0;
             else
             {
-                int leftHeight = MaxHeight(node.LeftNode);
-                int rightHeight = MaxHeight(node.RightNode);
+                int leftHeight = MaxHeight(currentNode.LeftNode);
+                int rightHeight = MaxHeight(currentNode.RightNode);
 
-                if (node.IsLeaf())
+                if (currentNode.IsLeaf())
                     return 0;
                 else if (leftHeight > rightHeight)
                     return leftHeight + 1;
@@ -195,7 +208,7 @@ namespace TreeProject
 
             return;
         }
-
+        
         private class Enumerator : IEnumerator
         {
             private int currentIndex;

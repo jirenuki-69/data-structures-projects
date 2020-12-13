@@ -12,6 +12,10 @@ namespace TreeProject
         {
             Tree<int> tree = new Tree<int>();
 
+            List<int> list = new List<int>() { 1, 2, 3 };
+
+            list.Sort();
+
             tree.AddRoot(0);
 
             //Console.WriteLine($"Size: {tree.Size}, Height {tree.Height}");
@@ -31,12 +35,14 @@ namespace TreeProject
             Node<int> nueve = tree.AddLeftChild(ocho, 9);
             Node<int> diez = tree.AddRightChild(ocho, 10);
             Node<int> once = tree.AddRightChild(nueve, 11);
+
+            Console.WriteLine($"Size: {tree.Size}, Height {tree.Height}");
+
+            Console.WriteLine("***FUNCIÓN FOREACH***");
             
             tree.ForEach(element => Console.WriteLine(element), 3); //PostOrder 
 
             //Console.WriteLine($"Size: {tree.Size}, Height {tree.Height}");
-
-            Console.WriteLine($"Size: {tree.Size}, Height {tree.Height}");
 
             //tree.DeleteNode(seis, false);
             //Console.WriteLine($"Size: {tree.Size}, Height {tree.Height}");
@@ -44,7 +50,18 @@ namespace TreeProject
             //tree.DeleteNode(once, false);
             //Console.WriteLine($"Size: {tree.Size}, Height {tree.Height}");
 
+            Console.WriteLine("***CICLO FOREACH***");
+
             foreach (int element in tree)
+            {
+                Console.WriteLine(element);
+            }
+
+            Console.WriteLine("***TREE SORT***");
+
+            list = tree.TreeSort((a, b) => a.CompareTo(b));
+
+            foreach (int element in list)
             {
                 Console.WriteLine(element);
             }

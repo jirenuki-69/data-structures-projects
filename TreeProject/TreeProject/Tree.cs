@@ -140,16 +140,52 @@ namespace TreeProject
                 throw new Exception("?");
         }
 
-        public List<T> TreeSort(Comparison<T> comparison)
+        public void TreeSort(int[] data)
         {
-            List<T> list = new List<T>();
+            if (data.Length == 0 || data.Length == 1)
+                return;
 
-            foreach (T e in this)
-                list.Add(e);
+            Tree<int> newTree = new Tree<int>();
 
-            list.Sort(comparison);
+            newTree.AddRoot(data[0]);
 
-            return list;
+            //Inserción de datos en el árbol
+            PutChildrenAlgorithm(newTree, data);
+
+            List<int> list = new List<int>();
+
+            //InOrder para que quede ordenado de menor a mayor
+            newTree.ForEach(e => list.Add(e), 2);
+
+            for (int i = 0; i < data.Length; ++i)
+                data[i] = list[i];
+        }
+
+        private void PutChildrenAlgorithm(Tree<int> newTree, int[] data)
+        {
+            for (int i = 1; i < data.Length; ++i)
+            {
+                PutData(newTree, newTree.RootNode, data[i]);
+            }
+        }
+
+        private void PutData(Tree<int> newTree, Node<int> currentNode, int data)
+        {
+            if (currentNode == null)
+                return;
+
+            if (currentNode.LeftNode == null && data < currentNode.Data)
+            {
+                newTree.AddLeftChild(currentNode, data);
+            }
+            else if (currentNode.RightNode == null && data >= currentNode.Data)
+            {
+                newTree.AddRightChild(currentNode, data);
+            }
+            else if (currentNode.LeftNode != null && data < currentNode.Data)
+                PutData(newTree, currentNode.LeftNode, data);
+            else if (currentNode.RightNode != null && data >= currentNode.Data)
+                PutData(newTree, currentNode.RightNode, data);
         }
 
         private int MaxHeight(Node<T> currentNode)
@@ -170,7 +206,7 @@ namespace TreeProject
             }
         }
 
-        void WithChildrenAlgorithm(Node<T> currentNode)
+        private void WithChildrenAlgorithm(Node<T> currentNode)
         {
             if (currentNode == null || currentNode.IsLeaf())
             {

@@ -8,8 +8,55 @@ namespace TreeProject
 {
     class Program
     {
+
         static void Main(string[] args)
         {
+            Tree<int> TreeSort(Tree<int> data)
+            {
+                if (data.IsEmpty())
+                    return data;
+
+                //Agarro los elementos del arbol y los pongo en las lista
+                List<int> dataList = new List<int>();
+                data.ForEach(e => dataList.Add(e), 2);
+
+                Tree<int> newTree = new Tree<int>();
+                //El root del arbol va a ser el primer elemento de la lista
+                newTree.AddRoot(dataList[0]);
+
+                PutChildrenAlgorithm(newTree, dataList);
+
+                //Sustituyo el arbol por el nuevo que se creó
+                return newTree;
+            }
+
+            void PutChildrenAlgorithm(Tree<int> newTree, List<int> data)
+            {
+                for (int i = 1; i < data.Count; ++i)
+                {
+                    PutData(newTree, newTree.RootNode, data[i]);
+                }
+            }
+
+            void PutData(Tree<int> newTree, Node<int> currentNode, int data)
+            {
+                if (currentNode == null)
+                    return;
+
+                if (currentNode.LeftNode == null && data < currentNode.Data)
+                {
+                    newTree.AddLeftChild(currentNode, data);
+                }
+                else if (currentNode.RightNode == null && data >= currentNode.Data)
+                {
+                    newTree.AddRightChild(currentNode, data);
+                }
+                else if (currentNode.LeftNode != null && data < currentNode.Data)
+                    PutData(newTree, currentNode.LeftNode, data);
+                else if (currentNode.RightNode != null && data >= currentNode.Data)
+                    PutData(newTree, currentNode.RightNode, data);
+            }
+
             Tree<int> tree = new Tree<int>();
 
             List<int> list = new List<int>() { 1, 2, 3 };
@@ -35,20 +82,30 @@ namespace TreeProject
             Node<int> nueve = tree.AddLeftChild(ocho, 9);
             Node<int> diez = tree.AddRightChild(ocho, 10);
             Node<int> once = tree.AddRightChild(nueve, 11);
+            //Node<int> doce = tree.AddRightChild(once, 12);
 
             Console.WriteLine($"Size: {tree.Size}, Height {tree.Height}");
 
             Console.WriteLine("***FUNCIÓN FOREACH***");
-            
-            tree.ForEach(element => Console.WriteLine(element), 3); //PostOrder 
+
+            Console.Write("PreOrder: ");
+            tree.ForEach(e => Console.Write($"{e} "), 1);
+            Console.WriteLine();
+
+            Console.Write("InOrder: ");
+            tree.ForEach(e => Console.Write($"{e} "), 2);
+            Console.WriteLine();
+
+            Console.Write("PostOrder: ");
+            tree.ForEach(e => Console.Write($"{e} "), 3);
+            Console.WriteLine();
 
             //Console.WriteLine($"Size: {tree.Size}, Height {tree.Height}");
 
             //tree.DeleteNode(tree.RootNode, false);
             //Console.WriteLine($"Size: {tree.Size}, Height {tree.Height}");
 
-            tree.DeleteNode(uno, false);
-            Console.WriteLine($"Size: {tree.Size}, Height {tree.Height}");
+            //tree.DeleteNode(uno, false);
 
             //tree.DeleteNode(once, false);
             //Console.WriteLine($"Size: {tree.Size}, Height {tree.Height}");
@@ -62,13 +119,29 @@ namespace TreeProject
 
             Console.WriteLine("***TREE SORT***");
 
-            list = tree.TreeSort((a, b) => a.CompareTo(b));
+            int[] array = new int[] { 5, 4, 7, 2, 11, 14, 6 };
 
-            foreach (int element in list)
+            Console.Write("Unsorted: ");
+            foreach (int element in array)
             {
-                Console.WriteLine(element);
+                Console.Write($"{element} ");
             }
 
+            tree.TreeSort(array);
+
+            Console.WriteLine("");
+            Console.Write("Sorted: ");
+            foreach (int element in array)
+            {
+                Console.Write($"{element} ");
+            }
+            Console.WriteLine();
+
+            tree = TreeSort(tree);
+
+            Console.Write("InOrder: ");
+            tree.ForEach(e => Console.Write($"{e} "), 2);
+            Console.WriteLine();
             Console.ReadKey();
         }
     }

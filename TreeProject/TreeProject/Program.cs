@@ -44,8 +44,11 @@ namespace TreeProject
 
             //Console.WriteLine($"Size: {tree.Size}, Height {tree.Height}");
 
-            //tree.DeleteNode(seis, false);
+            //tree.DeleteNode(tree.RootNode, false);
             //Console.WriteLine($"Size: {tree.Size}, Height {tree.Height}");
+
+            tree.DeleteNode(uno, false);
+            Console.WriteLine($"Size: {tree.Size}, Height {tree.Height}");
 
             //tree.DeleteNode(once, false);
             //Console.WriteLine($"Size: {tree.Size}, Height {tree.Height}");

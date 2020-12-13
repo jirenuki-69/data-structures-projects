@@ -103,35 +103,19 @@ namespace TreeProject
                 throw new Exception("No hay nodos en el contexto actual para eliminar");
 
             if (node == RootNode)
-                throw new Exception("No se puede eliminar el nodo raíz");
-
-            if (!withChildren)
             {
-                if (!(node.IsLeaf() || ((node.LeftNode != null && node.RightNode == null) || (node.LeftNode == null && node.RightNode != null))))
-                    throw new Exception("No es un nodo hoja o tiene dos hijos");
-
-                if (node.IsLeaf())
-                    Size--;
-                else
-                    Size -= 2;
-
-                if (node.IsLeftChild())
-                    node.ParentNode.LeftNode = null;
-                else
-                    node.ParentNode.RightNode = null;
-
+                WithChildrenAlgorithm(RootNode);
+                RootNode = null;
                 return;
             }
 
-            if (node.IsLeaf())
-                Size--;
-            else
+            if (!withChildren)
             {
-                if ((node.RightNode != null && node.LeftNode == null) || (node.RightNode == null && node.LeftNode != null))
-                    Size -= 2;
-                else
-                    Size -= 3;
+                if (node.LeftNode != null && node.RightNode != null)
+                    throw new Exception("No es un nodo hoja o tiene dos hijos");
             }
+
+            WithChildrenAlgorithm(node);
 
             if (node.IsLeftChild())
                 node.ParentNode.LeftNode = null;
@@ -185,7 +169,27 @@ namespace TreeProject
                     return rightHeight + 1;
             }
         }
-        
+
+        void WithChildrenAlgorithm(Node<T> currentNode)
+        {
+            if (currentNode == null || currentNode.IsLeaf())
+            {
+                currentNode = null;
+                Size--;
+                return;
+            }
+
+            if (currentNode.LeftNode != null)
+                WithChildrenAlgorithm(currentNode.LeftNode);
+
+            if (currentNode.RightNode != null)
+                WithChildrenAlgorithm(currentNode.RightNode);
+
+            currentNode = null;
+            Size--;
+            return;
+        }
+
         private void Order(Node<T> currentNode, ProcessOrder processOrder, Action<T> action)
         {
             if (processOrder == ProcessOrder.PreOrder)

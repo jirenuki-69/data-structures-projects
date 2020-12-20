@@ -8,7 +8,6 @@ namespace TreeProject
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             Tree<int> TreeSort(Tree<int> data)
@@ -44,15 +43,14 @@ namespace TreeProject
                     return;
 
                 if (currentNode.LeftNode == null && data < currentNode.Data)
-                {
                     newTree.AddLeftChild(currentNode, data);
-                }
+
                 else if (currentNode.RightNode == null && data >= currentNode.Data)
-                {
                     newTree.AddRightChild(currentNode, data);
-                }
+
                 else if (currentNode.LeftNode != null && data < currentNode.Data)
                     PutData(newTree, currentNode.LeftNode, data);
+
                 else if (currentNode.RightNode != null && data >= currentNode.Data)
                     PutData(newTree, currentNode.RightNode, data);
             }

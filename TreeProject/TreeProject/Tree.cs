@@ -11,6 +11,7 @@ namespace TreeProject
     {
         public int Size { get; private set; }
 
+        //Para conseguir la altura, voy a obtener el valor que me retorna la función MaxHeight
         public int Height { get => MaxHeight(RootNode); }
 
         public Node<T> RootNode { get; private set; }
@@ -175,15 +176,14 @@ namespace TreeProject
                 return;
 
             if (currentNode.LeftNode == null && data < currentNode.Data)
-            {
                 newTree.AddLeftChild(currentNode, data);
-            }
+
             else if (currentNode.RightNode == null && data >= currentNode.Data)
-            {
                 newTree.AddRightChild(currentNode, data);
-            }
+
             else if (currentNode.LeftNode != null && data < currentNode.Data)
                 PutData(newTree, currentNode.LeftNode, data);
+
             else if (currentNode.RightNode != null && data >= currentNode.Data)
                 PutData(newTree, currentNode.RightNode, data);
         }

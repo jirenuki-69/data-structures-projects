@@ -130,7 +130,7 @@ namespace Heap
             {
                 if (indexLeftChild < Size)
                 {
-                    if (Comparer(data[indexLeftChild], data[currentIndex]) < 0 && Comparer(data[indexLeftChild], data[currentIndex]) < 0) 
+                    if (Comparer(data[indexLeftChild], data[currentIndex]) < 0) 
                     {
                         //Intercambio del hijo izquierdo con el padre
                         T element = data[indexLeftChild];

@@ -22,18 +22,22 @@ namespace Graph
             Node<int> nodoSiete = graph.AgregarNodo();
 
             //Conectando los nodos con aristas
-            graph.AgregarArista(nodoUno, nodoDos, 3);
-            graph.AgregarArista(nodoDos, nodoTres, 5);
-            graph.AgregarArista(nodoTres, nodoCuatro);
+            graph.AgregarArista(nodoUno, nodoDos, 2);
+            graph.AgregarArista(nodoUno, nodoCuatro);
+            graph.AgregarArista(nodoDos, nodoCuatro, 3);
+            graph.AgregarArista(nodoDos, nodoCinco, 10);
+            graph.AgregarArista(nodoTres, nodoUno, 4);
+            graph.AgregarArista(nodoTres, nodoSeis, 5);
+            graph.AgregarArista(nodoCuatro, nodoTres, 2);
             graph.AgregarArista(nodoCuatro, nodoCinco, 2);
-            graph.AgregarArista(nodoCinco, nodoTres, 8);
-            graph.AgregarArista(nodoCinco, nodoSeis, 4);
-            graph.AgregarArista(nodoSeis, nodoUno, 7);
-            graph.AgregarArista(nodoSeis, nodoSiete);
-            graph.AgregarArista(nodoSiete, nodoDos, 2);
-            graph.AgregarArista(nodoSiete, nodoTres);
+            graph.AgregarArista(nodoCuatro, nodoSeis, 8);
+            graph.AgregarArista(nodoCuatro, nodoSiete, 4);
+            graph.AgregarArista(nodoCinco, nodoSiete, 6);
+            graph.AgregarArista(nodoSiete, nodoSeis);
 
             graph.MostrarMatriz();
+
+            graph.ShortestPath(nodoTres, nodoCinco);
 
             Console.ReadKey();
         }
